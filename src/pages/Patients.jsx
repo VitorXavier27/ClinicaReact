@@ -43,7 +43,7 @@ const Patients = () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        setPacientes(response.data);
+        setPacientes(response.data.content);
       })
       .catch((error) => {
         console.error("Houve um erro ao buscar os pacientes!", error);

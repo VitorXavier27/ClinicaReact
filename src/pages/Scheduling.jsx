@@ -40,7 +40,7 @@ const Scheduling = () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        setPacientes(response.data);
+        setPacientes(response.data.content);
       })
       .catch((error) => {
         console.error("Erro ao Buscar Paciente!", error);

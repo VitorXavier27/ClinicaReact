@@ -40,8 +40,8 @@ const Doctors = () => {
     axios
       .get(apiURL)
       .then((response) => {
-        console.log(response.data);
-        setDoutores(response.data);
+        console.log(response.data.content);
+        setDoutores(response.data.content);
       })
       .catch((error) => {
         console.error("Houve um erro ao buscar o Medico!", error);
@@ -171,7 +171,7 @@ const Doctors = () => {
               </thead>
               {doutores.map((doutor) => (
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
+                  <tr key={doutor.id_Medico}>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {doutor.id_Medico}
                     </td>

@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
+import axios from "axios";
+
 
 const DashBord = () => {
+  const [totalPacientes, setTotalPacientes] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalPacientes = async () => {
+      try{
+        const response = await axios.get('http://localhost:8080/pacientes/total')
+        setTotalPacientes(response.data)
+      }catch(error){
+        console.error("Erro ao buscar total de pacientes: ", error);
+        setTotalPacientes('Erro')
+      }
+    }
+    fetchTotalPacientes();
+  },[])
+
   return (
     <div className="flex">
       <SideBar />
@@ -30,7 +47,7 @@ const DashBord = () => {
                 </div>
                 <div class="ml-4">
                   <h3 class="text-lg font-medium text-gray-500">Pacientes</h3>
-                  <p class="text-2xl font-semibold text-gray-800">1,248</p>
+                  <p class="text-2xl font-semibold text-gray-800">{totalPacientes}</p>
                 </div>
               </div>
             </div>
